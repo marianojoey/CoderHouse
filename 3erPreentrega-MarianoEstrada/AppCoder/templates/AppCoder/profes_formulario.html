@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+<body>
+
+    <form action="" method="POST"> {% csrf_token %} <!--antes de crear el FORM.PY en las comillas
+    del action iba la url /AppCoder/curso_formulario.html para que al completar uno volviera ahí y
+    antes de crear el FORM.PY tenía que usar esto para mostrar el formulario.
+    <p>Curso: <input type="text" name="curso"></p>
+    <p>Camada: <input type="number" name="camada"></p>
+    <input type="submit" value="Enviar">
+    Ahora, lo que hacemos es:-->
+        <table>
+            {{formu.as_table}} <!--formu es el nombre que devuelve el formulario vacío en VIEWS.
+            .as_table se pone para que dibuje el formulario directamente de acuerdo a lo que
+            tenemos en FORMS-->
+        </table>
+        <input type="submit" value="Confirmar">
+    </form>
+</body>
+</html>

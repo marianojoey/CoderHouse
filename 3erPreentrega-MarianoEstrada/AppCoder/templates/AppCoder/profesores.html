@@ -1,0 +1,118 @@
+{% extends 'AppCoder/padre.html' %}
+
+{% load static %}
+
+{% block titulo %}
+
+PROFESORES
+
+{% endblock  %}
+
+
+{% block descripcion %}
+                    
+Permite ver los datos de los profesores.
+
+<form action="/AppCoder/apellido_profes/" method="GET">
+    <input type="number" name="legajo" id="legajo">
+    <input type="submit" value="Buscar">
+    </form>
+    <h4>Estamos buscando a los profesores que tienen {{legajo}} dentro de su legajo.</h4>
+    {% for Profesor in profesores %}
+        <h5>
+            Legajo: {{Profesor.legajo}} --- Nombre y Apellido: {{Profesor.nombre_apellido}}
+            <br>
+            EMAIL: {{Profesor.email}} --- Curso: {{Profesor.curso_dictado}}
+        </h5>
+    {% endfor %}
+    
+
+{% endblock descripcion %}
+
+
+{% block botones %}
+
+<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'Inicio' %}">Inicio</a></li>
+<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="">Profesores</a></li>
+<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'Cursos' %}">Cursos</a></li>
+<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'Estudiantes' %}">Estudiantes</a></li>
+
+{% endblock botones %}
+
+{% block descpagina %}
+
+<div class="col-lg-4 ms-auto"><p class="lead">En esta página se pueden cargar y revisar los profesores que hay en el instituto.</p></div>
+<div class="col-lg-4 me-auto"><p class="lead">Usando los botones se puede acceder a las funcionalidades de la página.</p></div>
+
+{% endblock descpagina %}
+
+
+{% block formulario %}
+
+    <section class="page-section" id="contact">
+        <div class="container">
+            <!-- Contact Section Heading-->
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Carga de Profesores</h2>
+            <!-- Icon Divider-->
+            <div class="divider-custom">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
+            </div>
+            <!-- Contact Section Form-->
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-xl-7">
+
+                    <form action="" method="POST"> {% csrf_token %}
+                        <!-- Legajo input-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="legajo" type="number" placeholder="Ingrese el número de legajo..." data-sb-validations="required" />
+                            <label for="legajo">Legajo</label>
+                            <div class="invalid-feedback" data-sb-feedback="legajo:required">Se requiere el legajo.</div>
+                        </div>-
+                        <!-- Nombre y Apellido input-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="nombre_apellido" type="text" placeholder="Ingrese el nombre y apellido..." data-sb-validations="required" />
+                            <label for="nombre_apellido">Nombre/s y Apellido/s</label>
+                            <div class="invalid-feedback" data-sb-feedback="nombre_apellido:required">El nombre y apellido son necesarios.</div>
+                        </div>
+                        <!-- Email input-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="email" type="email" placeholder="name@ejemplo.com" data-sb-validations="required,email" />
+                            <label for="email">Dirección de E-Mail</label>
+                            <div class="invalid-feedback" data-sb-feedback="email:required">Se requiere un e-mail.</div>
+                            <div class="invalid-feedback" data-sb-feedback="email:email">El e-mail es inválido.</div>
+                        </div>
+                        <!-- Curso input-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="curso_dictado" type="text" placeholder="Ingrese el curso que dicta." data-sb-validations="required" />
+                            <label for="curso_dictado">Curso</label>
+                            <div class="invalid-feedback" data-sb-feedback="curso_dictado:required">Se requiere el curso que dicta.</div>
+                        </div>
+
+                        <!-- Submit success message-->
+                        <!---->
+                        <!-- This is what your users will see when the form-->
+                        <!-- has successfully submitted-->
+                        <div class="d-none" id="submitSuccessMessage">
+                            <div class="text-center mb-3">
+                                <div class="fw-bolder">Profesor ingresado con éxito.</div>
+                                <br />
+                            </div>
+                        </div>
+                        <!-- Submit error message-->
+                        <!---->
+                        <!-- This is what your users will see when there is-->
+                        <!-- an error submitting the form-->
+                        <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">¡Hubo un error! No se pudo cargar el profesor.</div></div>
+                        <!-- Submit Button-->
+                        <input type="submit" value="Confirmar"> 
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock formulario %}
+
+

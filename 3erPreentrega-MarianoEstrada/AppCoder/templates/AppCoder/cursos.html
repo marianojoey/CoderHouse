@@ -1,0 +1,98 @@
+{% extends 'AppCoder/padre.html' %}
+
+{% load static %}
+
+{% block titulo %}
+
+CURSOS
+
+{% endblock  %}
+
+
+{% block descripcion %}
+                    
+Permite acceder a los diferentes cursos del instituto.
+
+<form action="/AppCoder/buscar/" method="GET"> <!--empieza el sistema de búsqueda de acuerdo al número de camada-->
+<input type="number" name="camada" id="camada">
+<input type="submit" value="Buscar">
+</form>
+<p>Estamos buscando la camada: {{camada}}</p> <!--imprime los resultados de la búsqueda de la camada.-->
+{% for curso in cursos %}
+    <p>
+        Nombre: {{curso.nombre}} --- Camada: {{curso.camada}}
+    </p>
+{% endfor %}
+
+{% endblock descripcion %}
+
+{% block botones %}
+
+<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'Inicio' %}">Inicio</a></li>
+<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'Profesores' %}">Profesores</a></li>
+<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="">Cursos</a></li>
+<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'Estudiantes' %}">Estudiantes</a></li>
+
+{% endblock botones %}
+
+{% block descpagina %}
+
+<div class="col-lg-4 ms-auto"><p class="lead">En esta página se pueden cargar y revisar los cursos que hay en el instituto.</p></div>
+<div class="col-lg-4 me-auto"><p class="lead">Usando los botones se puede acceder a las funcionalidades de la página.</p></div>
+
+{% endblock descpagina %}
+
+{% block formulario %}
+
+        <section class="page-section" id="contact">
+            <div class="container">
+                <!-- Contact Section Heading-->
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Carga de Cursos</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <!-- Contact Section Form-->
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 col-xl-7">
+
+                        <form action="" method="POST"> {% csrf_token %}
+                            <!-- Name input-->
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="curso" type="text" placeholder="Ingrese el curso..." data-sb-validations="required" />
+                                <label for="curso">Curso</label>
+                                <div class="invalid-feedback" data-sb-feedback="curso:required">Se requiere el curso.</div>
+                            </div>
+                            <!-- Camada input-->
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="camada" type="number" placeholder="Ingrese la camada..." data-sb-validations="required" />
+                                <label for="camada">Camada</label>
+                                <div class="invalid-feedback" data-sb-feedback="camada:required">Se requiere la camada.</div>
+                            </div>
+
+                            <!-- Submit success message-->
+                            <!---->
+                            <!-- This is what your users will see when the form-->
+                            <!-- has successfully submitted-->
+                            <div class="d-none" id="submitSuccessMessage">
+                                <div class="text-center mb-3">
+                                    <div class="fw-bolder">Curso ingresado con éxito.</div>
+                                    <br />
+                                </div>
+                            </div>
+                            <!-- Submit error message-->
+                            <!---->
+                            <!-- This is what your users will see when there is-->
+                            <!-- an error submitting the form-->
+                            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">¡Hubo un error! No se pudo cargar el curso.</div></div>
+                            <!-- Submit Button-->
+                            <input type="submit" value="Confirmar">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+{% endblock formulario %}

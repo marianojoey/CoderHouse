@@ -1,0 +1,94 @@
+{% extends 'AppCoder/padre.html' %}
+
+{% load static %}
+
+{% block titulo %}
+
+ESTUDIANTES
+
+{% endblock  %}
+
+
+{% block descripcion %}
+
+Permite ver los datos de los estudiantes.
+
+<form action="/AppCoder/apellido_alumnos/" method="GET">
+    <input type="number" name="legajo" id="legajo">
+    <input type="submit" value="Buscar">
+    </form>
+    <h4>Estamos buscando a los alumnos que tienen {{legajo}} dentro de su legajo</h4>
+    {% for Estudiante in estudiante %}
+        <h5>
+            Legajo: {{Estudiante.legajo}} --- Nombre y Apellido: {{Estudiante.nombre_apellido}}
+            <br>
+            EMAIL: {{Estudiante.email}} --- Curso: {{Estudiante.cursando}} --- Camada: {{Estudiante.camada}}
+        </h5>
+    {% endfor %}
+    
+                    
+{% endblock descripcion %}
+
+{% block botones %}
+
+<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'Inicio' %}">Inicio</a></li>
+<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'Profesores' %}">Profesores</a></li>
+<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'Cursos' %}">Cursos</a></li>
+<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="">Estudiantes</a></li>
+
+{% endblock botones %}
+
+{% block descpagina %}
+
+<div class="col-lg-4 ms-auto"><p class="lead">En esta página se pueden cargar y revisar los alumnos que hay en el instituto.</p></div>
+<div class="col-lg-4 me-auto"><p class="lead">Usando los botones se puede acceder a las funcionalidades de la página.</p></div>
+
+{% endblock descpagina %}
+
+{% block formulario %}
+
+<section class="page-section" id="contact">
+    <div class="container">
+        <!-- Contact Section Heading-->
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Carga de Alumnos</h2>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- Contact Section Form-->
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-xl-7">
+
+                <form action="" method="POST"> {% csrf_token %}
+                    <table>
+                        {{formu.as_table}} <!--formu es el nombre que devuelve el formulario vacío en VIEWS.
+                        .as_table se pone para que dibuje el formulario directamente de acuerdo a lo que
+                        tenemos en FORMS-->
+                    </table>
+
+                    <!-- Submit success message-->
+                    <!---->
+                    <!-- This is what your users will see when the form-->
+                    <!-- has successfully submitted-->
+                    <div class="d-none" id="submitSuccessMessage">
+                        <div class="text-center mb-3">
+                            <div class="fw-bolder">Alumno ingresado con éxito.</div>
+                            <br />
+                        </div>
+                    </div>
+                    <!-- Submit error message-->
+                    <!---->
+                    <!-- This is what your users will see when there is-->
+                    <!-- an error submitting the form-->
+                    <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">¡Hubo un error! No se pudo cargar el alumno.</div></div>
+                    <!-- Submit Button-->
+                    <input type="submit" value="Confirmar">
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock formulario %}

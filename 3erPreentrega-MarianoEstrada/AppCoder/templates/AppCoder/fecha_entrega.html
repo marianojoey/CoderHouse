@@ -1,0 +1,34 @@
+{% extends 'AppCoder/padre.html' %}
+
+{% load static %}
+
+{% block titulo %}
+
+FECHA DE ENTREGA
+
+{% endblock  %}
+
+
+{% block descripcion %}
+                    
+Permite ver la fecha de entrega de los diferentes trabajos prácticos.
+
+{% endblock descripcion %}
+
+
+{% block botones %}
+
+<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'Inicio' %}">Inicio</a></li>
+<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'Profesores' %}">Profesores</a></li>
+<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'Cursos' %}">Cursos</a></li>
+<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'Estudiantes' %}">Estudiantes</a></li>
+<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'Entregables' %}">Entregables</a></li>
+
+{% endblock botones %}
+
+{% block descpagina %}
+
+<div class="col-lg-4 ms-auto"><p class="lead">En esta página se pueden revisar las fechas de entrega que tienen los TPs del instituto.</p></div>
+<div class="col-lg-4 me-auto"><p class="lead">Usando los botones se puede acceder a las funcionalidades de la página.</p></div>
+
+{% endblock descpagina %}
