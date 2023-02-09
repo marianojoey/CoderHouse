@@ -1,5 +1,5 @@
 # CoderHouse
-proyectos de CoderHose
+proyectos de CoderHouse
 Abre las páginas (AppCoder es la inicial)
 desde AppCoder se puede acceder a
 ---->profesores
@@ -8,6 +8,6 @@ desde AppCoder se puede acceder a
 Aparte de AppCoder se puede acceder manualmente a admin
 dejé la base de datos cargada con algunos ítems.
 
-Las búsquedas funcionan, la carga de datos por página no (lo que cargué lo cargué manualmente con admin).
+Las búsquedas funcionan, la carga de datos por página también. Todo debería funcionar correctamente, pero hay que actualizar la página después de hacer una búsqueda (desaparece el formulario) o después de cargar un formulario (también desaparece el formulario).
 
 Tengo que resolver eso. :/
